@@ -1,0 +1,27 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 2 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   3
+Resultsets: 7
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       7/3/22 20:22
+
+
+Dataset                   (1) lazy.IBk | (2) rules (3) bayes (4) trees (5) lazy. (6) lazy. (7) rules
+----------------------------------------------------------------------------------------------------
+pacman-data-training     (100)   47.65 |   49.50     41.87     50.74     42.06 *   41.80 *   32.70 *
+'pacman-data-training-wek(100)   45.44 |   44.50     40.17     41.76     40.96     43.82     32.70 *
+pacman-data-training-weka(100)   62.63 |   58.93     40.81 *   56.89 *   56.64 *   49.00 *   32.70 *
+----------------------------------------------------------------------------------------------------
+                               (v/ /*) |   (0/3/0)   (0/2/1)   (0/2/1)   (0/1/2)   (0/1/2)   (0/0/3)
+
+
+Key:
+(1) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(2) rules.PART '-C 0.25 -M 2' 8121455039782598361
+(3) bayes.NaiveBayes '' 5995231201785697655
+(4) trees.J48 '-C 0.25 -M 2' -217733168393644444
+(5) lazy.IBk '-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(6) lazy.IBk '-K 5 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(7) rules.ZeroR '' 48055541465867954
+

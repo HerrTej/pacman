@@ -1,0 +1,58 @@
+
+           with open("all_data_pacman.arff", "a") as file:
+            print("Tamaño", os.path.getsize("all_data_pacman.arff"))
+            if os.path.getsize("all_data_pacman.arff") == 0:
+                file.write("@RELATION pacman-data-training\n\n\n   @ATTRIBUTE posicionpacmanx NUMERIC"
+                           "\n   @ATTRIBUTE posicionpacmany NUMERIC\n   @ATTRIBUTE fantasmasvivos NUMERIC"
+                           "\n   @ATTRIBUTE distanciafantasma1 NUMERIC\n   @ATTRIBUTE distanciafantasma2 NUMERIC"
+                           "\n   @ATTRIBUTE distanciafantasma3 NUMERIC\n   @ATTRIBUTE distanciafantasma4 NUMERIC"
+                           "\n   @ATTRIBUTE numerocomidas NUMERIC\n   @ATTRIBUTE distanciacomidamascercana NUMERIC"
+                           "\n   @ATTRIBUTE score NUMERIC\n   @ATTRIBUTE scoreSiguiente NUMERIC"
+                           "\n   @ATTRIBUTE movimiento {North,South,East,West,Stop}\n\n"
+                           "   @data")
+
+
+
+
+
+
+
+
+
+
+                    gameState = self.state.deepCopy()
+                    action = agent.getAction(observation)
+                    distancer = Distancer(gameState.data.layout)
+                    estado_fantasmas = gameState.getLivingGhosts()[1:]
+                    listadedistanciafantasmas = []
+                    listadeposicionesfantasmas = gameState.getGhostPositions()
+                    posicionpacman = gameState.getPacmanPosition()
+                    marcador = gameState.getScore()
+                    movimiento = gameState.data.agentStates[0].getDirection()
+                    numero_comidas = gameState.getNumFood()
+                    distancia_comida = gameState.getDistanceNearestFood()
+                    siguiente_turno = self.state.generateSuccessor(agentIndex, action)
+                    siguienteScore = siguiente_turno.getScore()
+                    for fantasmas in listadeposicionesfantasmas:
+                        distancia = distancer.getDistance((posicionpacman[0], posicionpacman[1]),
+                                                          (fantasmas[0], fantasmas[1]))
+                        listadedistanciafantasmas.append(distancia)
+                        listadedistanciafantasmas.append(distancia)
+
+                    if distancia_comida == None:
+                        distancia_comida = 999999999
+                    fantasmas_vivos = 0
+                    for item in estado_fantasmas:
+                        if item == True:
+                            fantasmas_vivos += 1
+
+                    #print("Prueba:", agent.pritnLineData_keyboard(gameState))
+                    if agentIndex == 0 and movimiento != "Stop":
+                        texto = str(posicionpacman[0]) + "," + str(posicionpacman[1]) + "," + str(
+                            fantasmas_vivos) + "," + \
+                                str(listadedistanciafantasmas[0]) + "," + str(listadedistanciafantasmas[1]) + "," + \
+                                str(listadedistanciafantasmas[2]) + "," + str(listadedistanciafantasmas[3]) + "," + \
+                                str(numero_comidas) + "," + str(distancia_comida) + "," + str(marcador) + "," + \
+                                str(siguienteScore) + "," + str(movimiento)
+
+                        file.write("\n" + texto)
